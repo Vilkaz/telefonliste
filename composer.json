@@ -1,0 +1,14 @@
+{
+    "name": "vilkas/5d-liste",
+    "require": {
+        "twbs/bootstrap": "^3.3",
+        "components/jquery": "^3.1",
+        "components/jqueryui": "^1.12"
+    },
+    "authors": [
+        {
+            "name": "Vilkaz",
+            "email": "admin@vilkas.de"
+        }
+    ]
+}
