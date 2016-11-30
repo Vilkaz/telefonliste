@@ -8,5 +8,5 @@
 
 $data = $_POST["data"];
 $json = json_encode($data);
-file_put_contents("saving.json",$json);
+file_put_contents("data.json",$json);
 var_dump($json);

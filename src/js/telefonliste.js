@@ -4,7 +4,7 @@
 
 var list = {
 
-    headers:[],
+    headers: [],
 
     init: function () {
         var parent = this;
@@ -12,7 +12,7 @@ var list = {
             url: "data/read.php",
             type: 'GET',
             success: function (data) {
-                parent.fillTable(data)
+                parent.fillTable(data);
             }
 
         });
@@ -41,18 +41,18 @@ var list = {
                         "bInfo": false,
                         data: data.adressen,
                         columns: data.columns
-
                     }
                 );
             }
         );
     },
-    getHeaders: function () {
-        var headers = [];
-        $.each($('#classList thead th'), function () {
-            headers.push(this.outerText)
-        });
-        return headers;
+    initHeaders: function () {
+        if (this.headers.length==0){
+            var parent = this;
+            $.each($('#classList thead th'), function () {
+                parent.headers.push(this.outerText)
+            });
+        }
     },
     getRows: function () {
         var rows = [];
@@ -62,25 +62,26 @@ var list = {
         return rows;
     },
     getDataAsJson: function () {
-        var headers = this.getHeaders();
+        this.initHeaders();
         var rows = this.getRows();
         var adressen = [];
+        var parent = this;
         $.each(rows, function (key, value) {
             var adress = {};
-            for (var i = 0; i < headers.length; i++) {
-                adress[headers[i]] = value.cells[i].outerText;
+            for (var i = 0; i < parent.headers.length; i++) {
+                adress[parent.headers[i]] = value.cells[i].outerText;
             }
             adressen.push(adress);
         })
         var data = {
-            "adressen" : adressen,
-            "columns" : []
+            "adressen": adressen,
+            "columns": []
         }
-        $.each(headers, function (key, value) {
+        $.each(parent.headers, function (key, value) {
             data.columns.push(
                 {
-                    "data":value,
-                    "title":value
+                    "data": value,
+                    "title": value
                 }
             )
         })
@@ -93,12 +94,21 @@ var list = {
         });
     },
     clearFreshLineContent: function () {
+        var counter = 0;
+        var parent = this;
+        if (this.headers.length==0){
+            parent.initHeaders();
+        }
         $.each($("tr:last td"), function (key, value) {
-            value.innerText = "\&nbsp";
+            value.innerText = "";
+            value.placeholder = "ASDASDASD"
+            if (counter++>=parent.headers.length-1){
+                value.innerText = ".";
+            }
         })
-    }, addNewLine : function(){
-        var lastRow = $( "tr:last" );
-        $( lastRow ).clone().insertAfter( lastRow );
+    }, addNewLine: function () {
+        var lastRow = $("tr:last");
+        $(lastRow).clone().insertAfter(lastRow);
         this.clearFreshLineContent();
     }
 
