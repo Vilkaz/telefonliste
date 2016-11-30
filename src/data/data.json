@@ -1,0 +1,38 @@
+{
+  "adressen": [
+    {
+      "Kind": "Tiger Nixon",
+      "Festnetz": "S06161065106",
+      "Mobile": "123123123",
+      "Adresse": "blablab str 456  123123\n 123 23 ",
+      "E-mail": "asdasd @asdasd-de",
+      "sonstiges": "asdasdasdads\n asdasd \na asdasd"
+    }
+  ],
+  "columns": [
+    {
+      "data": "Kind",
+      "title": "Kind"
+    },
+    {
+      "data": "Festnetz",
+      "title": "Festnetz"
+    },
+    {
+      "data": "Mobile",
+      "title": "Mobile"
+    },
+    {
+      "data": "Adresse",
+      "title": "Adresse"
+    },
+    {
+      "data": "E-mail",
+      "title": "E-mail"
+    },
+    {
+      "data": "sonstiges",
+      "title": "sonstiges"
+    }
+  ]
+}
